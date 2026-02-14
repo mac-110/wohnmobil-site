@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site";
-import { Camera } from "lucide-react";
 
 export function GallerySection() {
   return (
@@ -29,14 +29,25 @@ export function GallerySection() {
           {siteConfig.gallery.map((item, i) => (
             <ScrollReveal key={item.alt} delay={i * 60}>
               <div className="group relative aspect-[4/3] bg-forest/50 border border-copper/8 rounded-xl overflow-hidden hover:border-copper/25 transition-all cursor-pointer">
-                {/* Replace with <Image> when photos are available */}
-                {/* <Image src={`/images/${item.alt.toLowerCase()}.jpg`} alt={item.alt} fill className="object-cover" /> */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <Camera className="w-8 h-8 text-copper/30 mb-2 group-hover:text-copper/50 transition-colors" />
-                  <span className="text-sand/30 text-xs tracking-widest uppercase group-hover:text-sand/50 transition-colors">
-                    {item.alt}
-                  </span>
-                </div>
+                {"src" in item && item.src ? (
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-sand/30 text-xs tracking-widest uppercase">
+                      {item.alt}
+                    </span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute bottom-3 left-3 text-warm-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {item.alt}
+                </span>
               </div>
             </ScrollReveal>
           ))}

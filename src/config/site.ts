@@ -163,14 +163,14 @@ export const siteConfig = {
   },
 
   gallery: [
-    { alt: "Außenansicht", placeholder: true },
-    { alt: "Cockpit", placeholder: true },
-    { alt: "Küche", placeholder: true },
-    { alt: "Schlafbereich", placeholder: true },
-    { alt: "Nasszelle", placeholder: true },
-    { alt: "Heckgarage", placeholder: true },
-    { alt: "Dinette", placeholder: true },
-    { alt: "Hubbett", placeholder: true },
+    { alt: "Außenansicht", src: "/images/gallery/gallery-exterior.png" },
+    { alt: "Cockpit", src: "/images/gallery/gallery-cockpit.png" },
+    { alt: "Küche", src: "/images/gallery/gallery-kitchen.png" },
+    { alt: "Schlafbereich", src: "/images/gallery/gallery-sleeping.png" },
+    { alt: "Nasszelle", src: "/images/gallery/gallery-bathroom.png" },
+    { alt: "Heckgarage", src: "/images/gallery/gallery-garage.png" },
+    { alt: "Dinette", src: "/images/gallery/gallery-dinette.png" },
+    { alt: "Hubbett", src: "/images/gallery/gallery-bunkbed.png" },
   ],
 
   footer: {
