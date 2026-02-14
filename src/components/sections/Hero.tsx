@@ -10,7 +10,7 @@ export function HeroSection() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('/images/gallery/exterior-laika.jpg')` }}
+        style={{ backgroundImage: `url('/images/backgrounds/bg-mountains-lake.png')` }}
       />
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f1c]/70 via-[#1a1f1c]/50 to-[#1a1f1c]/80" />

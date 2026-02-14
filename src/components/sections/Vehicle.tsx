@@ -28,19 +28,14 @@ export function VehicleSection() {
           </div>
         </ScrollReveal>
 
-        {/* Vehicle image placeholder */}
+        {/* Vehicle image */}
         <ScrollReveal delay={100}>
           <div className="relative rounded-2xl overflow-hidden mb-16 aspect-[21/9] bg-forest border border-copper/10">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-copper/10 flex items-center justify-center mx-auto mb-4">
-                  <Car className="w-8 h-8 text-copper/50" />
-                </div>
-                <p className="text-sand/30 text-sm tracking-widest uppercase">
-                  Fahrzeugfoto folgt
-                </p>
-              </div>
-            </div>
+            <img
+              src="/images/gallery/exterior-laika.jpg"
+              alt="LAIKA ECOVIP 309s"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
         </ScrollReveal>
 
