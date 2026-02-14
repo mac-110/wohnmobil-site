@@ -56,6 +56,12 @@ export function PriceCalculator() {
   const { pricing } = siteConfig;
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  // Season limits: 02.03 – 31.10 of current or next year
+  const now = new Date();
+  const year = now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
+  const seasonMin = `${year}-03-02`;
+  const seasonMax = `${year}-10-31`;
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
 
   const toggleExtra = (index: number) => {
@@ -175,6 +181,8 @@ export function PriceCalculator() {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
+                  min={seasonMin}
+                  max={seasonMax}
                   className="w-full bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
                     focus:outline-none focus:ring-1 focus:ring-copper/40 focus:border-copper/30
                     [color-scheme:dark] text-sm"
@@ -189,7 +197,8 @@ export function PriceCalculator() {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  min={startDate || undefined}
+                  min={startDate || seasonMin}
+                  max={seasonMax}
                   className="w-full bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
                     focus:outline-none focus:ring-1 focus:ring-copper/40 focus:border-copper/30
                     [color-scheme:dark] text-sm"
