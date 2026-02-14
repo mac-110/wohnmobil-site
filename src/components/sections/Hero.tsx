@@ -20,7 +20,7 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         {/* Badge */}
-        <div className="animate-fade-slide-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-copper/20 bg-copper/5 mb-8">
+        <div className="animate-fade-slide-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-copper/20 bg-transparent mb-8">
           <MapPin className="w-3.5 h-3.5 text-copper" />
           <span className="text-xs sm:text-sm tracking-widest uppercase text-copper/80">
             Lichtenfels, Deutschland
