@@ -170,7 +170,7 @@ export function PriceCalculator() {
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
-          <div className="bg-forest/40 border border-copper/10 rounded-2xl p-6 sm:p-8">
+          <div className="bg-forest/40 border border-copper/10 rounded-2xl p-4 sm:p-8 overflow-hidden">
             {/* Date inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div>
@@ -184,7 +184,7 @@ export function PriceCalculator() {
                   onChange={(e) => setStartDate(e.target.value)}
                   min={seasonMin}
                   max={seasonMax}
-                  className="w-full bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
+                  className="w-full max-w-full box-border bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
                     focus:outline-none focus:ring-1 focus:ring-copper/40 focus:border-copper/30
                     [color-scheme:dark] text-sm"
                 />
@@ -200,7 +200,7 @@ export function PriceCalculator() {
                   onChange={(e) => setEndDate(e.target.value)}
                   min={startDate || seasonMin}
                   max={seasonMax}
-                  className="w-full bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
+                  className="w-full max-w-full box-border bg-forest/60 border border-copper/15 rounded-lg px-4 py-3 text-warm-white
                     focus:outline-none focus:ring-1 focus:ring-copper/40 focus:border-copper/30
                     [color-scheme:dark] text-sm"
                 />
