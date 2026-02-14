@@ -113,19 +113,24 @@ export const siteConfig = {
   pricing: {
     seasons: [
       {
-        name: "Vor-/Nachsaison",
-        period: "02.03. – 11.05. & 28.09. – 31.10.",
+        name: "Vorsaison",
+        period: "01.03. – 30.04.",
         price: 109,
       },
       {
         name: "Nebensaison",
-        period: "11.05. – 29.06. & 07.09. – 28.09.",
+        period: "01.05. – 30.06.",
         price: 125,
       },
       {
         name: "Hauptsaison",
-        period: "29.06. – 07.09.",
+        period: "01.07. – 14.09.",
         price: 147,
+      },
+      {
+        name: "Nachsaison",
+        period: "15.09. – 30.10.",
+        price: 109,
       },
     ],
     service: {

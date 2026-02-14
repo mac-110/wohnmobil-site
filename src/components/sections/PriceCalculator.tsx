@@ -8,16 +8,17 @@ import { Calculator, CalendarDays, Check, ShieldCheck } from "lucide-react";
 
 // Season date ranges for 2025/2026 (month is 0-indexed)
 const SEASON_RANGES = [
-  { name: "Vor-/Nachsaison", price: 109, ranges: [
-    { from: [2, 2], to: [4, 11] },   // 02.03 – 11.05
-    { from: [8, 28], to: [9, 31] },   // 28.09 – 31.10
+  { name: "Vorsaison", price: 109, ranges: [
+    { from: [2, 1], to: [4, 1] },     // 01.03 – 30.04 (exclusive May 1)
   ]},
   { name: "Nebensaison", price: 125, ranges: [
-    { from: [4, 11], to: [5, 29] },   // 11.05 – 29.06
-    { from: [8, 7], to: [8, 28] },    // 07.09 – 28.09
+    { from: [4, 1], to: [6, 1] },     // 01.05 – 30.06 (exclusive Jul 1)
   ]},
   { name: "Hauptsaison", price: 147, ranges: [
-    { from: [5, 29], to: [8, 7] },    // 29.06 – 07.09
+    { from: [6, 1], to: [8, 15] },    // 01.07 – 14.09 (exclusive Sep 15)
+  ]},
+  { name: "Nachsaison", price: 109, ranges: [
+    { from: [8, 15], to: [9, 31] },   // 15.09 – 30.10 (exclusive Oct 31)
   ]},
 ];
 
@@ -60,8 +61,8 @@ export function PriceCalculator() {
   // Season limits: 02.03 – 31.10 of current or next year
   const now = new Date();
   const year = now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
-  const seasonMin = `${year}-03-02`;
-  const seasonMax = `${year}-10-31`;
+  const seasonMin = `${year}-03-01`;
+  const seasonMax = `${year}-10-30`;
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
 
   const toggleExtra = (index: number) => {
