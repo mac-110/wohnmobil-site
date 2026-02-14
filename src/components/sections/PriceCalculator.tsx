@@ -275,6 +275,14 @@ export function PriceCalculator() {
                   </div>
                   <span className="text-warm-white font-semibold">€{calculation.deposit}</span>
                 </div>
+
+                {/* Book now button */}
+                <a
+                  href={`mailto:${siteConfig.contact.email}?subject=Buchungsanfrage%20${startDate}%20bis%20${endDate}&body=Hallo%2C%0A%0Aich%20möchte%20gerne%20das%20Wohnmobil%20buchen%3A%0A%0AAnreise%3A%20${startDate}%0AAbreise%3A%20${endDate}%0ANächte%3A%20${calculation.totalNights}%0AGeschätzter%20Preis%3A%20€${calculation.total.toLocaleString("de-DE")}%0A%0ABitte%20um%20Bestätigung.%0A%0AMit%20freundlichen%20Grüßen`}
+                  className="mt-6 block w-full text-center bg-copper hover:bg-copper-light text-[var(--background)] font-semibold rounded-full py-4 text-lg transition-colors"
+                >
+                  Jetzt Buchen
+                </a>
               </div>
             )}
 
