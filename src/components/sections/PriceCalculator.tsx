@@ -303,7 +303,37 @@ export function PriceCalculator() {
 
                 {/* Book now button */}
                 <a
-                  href={`mailto:${siteConfig.contact.email}?subject=Buchungsanfrage%20${startDate}%20bis%20${endDate}&body=Hallo%2C%0A%0Aich%20möchte%20gerne%20das%20Wohnmobil%20buchen%3A%0A%0AAnreise%3A%20${startDate}%0AAbreise%3A%20${endDate}%0ANächte%3A%20${calculation.totalNights}%0AGeschätzter%20Preis%3A%20€${calculation.total.toLocaleString("de-DE")}%0A%0ABitte%20um%20Bestätigung.%0A%0AMit%20freundlichen%20Grüßen`}
+                  href={(() => {
+                    const nl = "\n";
+                    const seasonLines = calculation.seasonEntries.map(([name, s]) =>
+                      `  ${s.nights} ${s.nights === 1 ? "Nacht" : "Nächte"} ${name} × €${s.price} = €${(s.nights * s.price).toLocaleString("de-DE")}`
+                    ).join(nl);
+                    const extrasLines = calculation.extrasBreakdown.length > 0
+                      ? nl + "Gewähltes Zubehör:" + nl + calculation.extrasBreakdown.map(e => `  • ${e.name}: €${e.cost}`).join(nl)
+                      : "";
+                    const body = [
+                      "Hallo,",
+                      "",
+                      "ich möchte gerne das Wohnmobil LAIKA ECOVIP 309s buchen:",
+                      "",
+                      `Anreise:    ${new Date(startDate).toLocaleDateString("de-DE")}`,
+                      `Abreise:    ${new Date(endDate).toLocaleDateString("de-DE")}`,
+                      `Nächte:     ${calculation.totalNights}`,
+                      "",
+                      "Kostenaufstellung:",
+                      seasonLines,
+                      `  Servicepauschale: €${calculation.serviceFee}`,
+                      extrasLines,
+                      "",
+                      `Gesamtpreis: €${calculation.total.toLocaleString("de-DE")}`,
+                      `(zzgl. €${calculation.deposit} Kaution, wird erstattet)`,
+                      "",
+                      "Bitte um Bestätigung der Verfügbarkeit.",
+                      "",
+                      "Mit freundlichen Grüßen",
+                    ].join(nl);
+                    return `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(`Buchungsanfrage ${new Date(startDate).toLocaleDateString("de-DE")} – ${new Date(endDate).toLocaleDateString("de-DE")}`)}&body=${encodeURIComponent(body)}`;
+                  })()}
                   className="mt-6 block w-full text-center bg-copper hover:bg-copper-light text-[var(--background)] font-semibold rounded-full py-4 text-lg transition-colors"
                 >
                   Jetzt Buchen
