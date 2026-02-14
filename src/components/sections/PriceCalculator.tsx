@@ -108,6 +108,25 @@ export function PriceCalculator() {
     const serviceFee = pricing.service.price;
     const total = rentalCost + serviceFee + extrasCost;
 
+    const inSeasonNights = seasonEntries.reduce((s, [, v]) => s + v.nights, 0);
+    const outOfSeasonNights = totalNights - inSeasonNights;
+
+    // Block if ANY days fall outside season
+    if (outOfSeasonNights > 0) {
+      return {
+        totalNights,
+        seasonEntries,
+        rentalCost: 0,
+        extrasCost: 0,
+        extrasBreakdown: [],
+        serviceFee: 0,
+        total: 0,
+        deposit: pricing.deposit,
+        outOfSeason: true,
+        outOfSeasonNights,
+      };
+    }
+
     return {
       totalNights,
       seasonEntries,
@@ -117,7 +136,8 @@ export function PriceCalculator() {
       serviceFee,
       total,
       deposit: pricing.deposit,
-      outOfSeason: totalNights > seasonEntries.reduce((s, [, v]) => s + v.nights, 0),
+      outOfSeason: false,
+      outOfSeasonNights: 0,
     };
   }, [startDate, endDate, selectedExtras, pricing]);
 
@@ -217,17 +237,22 @@ export function PriceCalculator() {
             </div>
 
             {/* Cost breakdown */}
-            {calculation && (
+            {calculation && calculation.outOfSeason && (
+              <div className="border-t border-copper/10 pt-8">
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-5 text-center">
+                  <p className="text-amber-200 text-sm font-medium mb-1">Buchung nicht möglich</p>
+                  <p className="text-amber-200/70 text-xs">
+                    Das Wohnmobil ist nur in der Saison verfügbar (02. März – 31. Oktober). Im Winter ist das Fahrzeug abgemeldet.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {calculation && !calculation.outOfSeason && (
               <div className="border-t border-copper/10 pt-8">
                 <h3 className="text-warm-white font-semibold text-sm uppercase tracking-widest mb-5">
                   Kostenaufstellung
                 </h3>
-
-                {calculation.outOfSeason && (
-                  <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4 text-amber-200 text-sm">
-                    Einige Tage liegen außerhalb der definierten Saisonzeiten und werden nicht berechnet.
-                  </div>
-                )}
 
                 <div className="space-y-3 mb-6">
                   {/* Season breakdown */}
