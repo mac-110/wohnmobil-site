@@ -163,14 +163,15 @@ export const siteConfig = {
   },
 
   gallery: [
-    { alt: "Außenansicht", src: "/images/gallery/gallery-exterior.png" },
-    { alt: "Cockpit", src: "/images/gallery/gallery-cockpit.png" },
-    { alt: "Küche", src: "/images/gallery/gallery-kitchen.png" },
-    { alt: "Schlafbereich", src: "/images/gallery/gallery-sleeping.png" },
-    { alt: "Nasszelle", src: "/images/gallery/gallery-bathroom.png" },
-    { alt: "Heckgarage", src: "/images/gallery/gallery-garage.png" },
-    { alt: "Dinette", src: "/images/gallery/gallery-dinette.png" },
-    { alt: "Hubbett", src: "/images/gallery/gallery-bunkbed.png" },
+    { alt: "LAIKA ECOVIP 309s — Frontansicht", src: "/images/gallery/exterior-front.jpg" },
+    { alt: "Seitenansicht mit offener Tür", src: "/images/gallery/exterior-side.jpg" },
+    { alt: "Heckgarage geöffnet", src: "/images/gallery/exterior-garage.jpg" },
+    { alt: "Campingplatz mit Markise & Fahrrädern", src: "/images/gallery/camping-markise.jpg" },
+    { alt: "Frontansicht auf dem Campingplatz", src: "/images/gallery/camping-front-side.jpg" },
+    { alt: "Heckansicht mit Fahrradträger", src: "/images/gallery/exterior-rear.jpg" },
+    { alt: "Unterwegs im Herbst", src: "/images/gallery/road-autumn.jpg" },
+    { alt: "Frontansicht auf Landstraße", src: "/images/gallery/road-front-close.jpg" },
+    { alt: "Seitenansicht auf der Straße", src: "/images/gallery/road-side.jpg" },
   ],
 
   footer: {
