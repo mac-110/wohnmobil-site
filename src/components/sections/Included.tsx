@@ -8,7 +8,8 @@ import { Check } from "lucide-react";
 export function IncludedSection() {
   return (
     <section className="py-24 sm:py-32 relative">
-      <div className="absolute inset-0 bg-forest/30" />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('/images/backgrounds/bg-alpine-meadow.png')` }} />
+      <div className="absolute inset-0 bg-[#1a1f1c]/80" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <ScrollReveal>
           <div className="text-center mb-16">

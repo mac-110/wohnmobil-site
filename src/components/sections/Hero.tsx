@@ -7,27 +7,15 @@ import { siteConfig } from "@/config/site";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background placeholder for hero image */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1f1c] via-[#2a332d] to-[#1a2418]">
-        {/* Placeholder pattern — replace with actual image */}
-        <div className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 50%, rgba(200,149,108,0.15) 0%, transparent 50%),
-                              radial-gradient(circle at 75% 30%, rgba(122,158,126,0.1) 0%, transparent 40%)`,
-          }}
-        />
-        {/* Decorative line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-copper/30 to-transparent" />
-      </div>
-
-      {/* Hero image placeholder area */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.07]">
-        <div className="w-[800px] h-[500px] border-2 border-dashed border-copper/40 rounded-2xl flex items-center justify-center">
-          <span className="text-copper/60 text-lg tracking-widest uppercase">
-            Wohnmobil-Foto hier einfügen
-          </span>
-        </div>
-      </div>
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('/images/backgrounds/bg-mountains-lake.png')` }}
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f1c]/70 via-[#1a1f1c]/50 to-[#1a1f1c]/80" />
+      {/* Decorative line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-copper/30 to-transparent z-10" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">

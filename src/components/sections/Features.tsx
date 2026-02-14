@@ -34,7 +34,8 @@ const iconMap: Record<string, React.ElementType> = {
 export function FeaturesSection() {
   return (
     <section id="ausstattung" className="py-24 sm:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-copper/[0.02] to-transparent" />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('/images/backgrounds/bg-forest-road.png')` }} />
+      <div className="absolute inset-0 bg-[#1a1f1c]/85" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <ScrollReveal>

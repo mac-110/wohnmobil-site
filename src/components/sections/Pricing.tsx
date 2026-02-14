@@ -12,7 +12,9 @@ export function PricingSection() {
 
   return (
     <section id="preise" className="py-24 sm:py-32 relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('/images/backgrounds/bg-sunset-coast.png')` }} />
+      <div className="absolute inset-0 bg-[#1a1f1c]/85" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <ScrollReveal>
           <div className="text-center mb-16">
             <Badge className="bg-copper/10 text-copper border-copper/20 hover:bg-copper/15 mb-4">
