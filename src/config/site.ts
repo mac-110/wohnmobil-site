@@ -6,10 +6,11 @@ export const siteConfig = {
     "Premium Wohnmobil-Verleih in Lichtenfels. Entdecken Sie Freiheit und Abenteuer mit unserem voll ausgestatteten LAIKA ECOVIP 309s.",
 
   contact: {
-    phone: "+49 1234 567890",
-    email: "info@schaefer-schoenhals-wohnmobile.de",
+    phone: "+49 15222 759872",
+    phone2: "+49 178 6559417",
+    email: "schaefer-schoenhals-wohnmobile@web.de",
     location: "Lichtenfels, Deutschland",
-    address: "Musterstraße 1, 96215 Lichtenfels",
+    address: "Schlesierstraße 30, 96215 Lichtenfels",
   },
 
   vehicle: {
