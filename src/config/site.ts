@@ -164,6 +164,11 @@ export const siteConfig = {
   },
 
   gallery: [
+    { alt: "LAIKA ECOVIP 309s auf Landstraße", src: "/images/gallery/exterior-laika.jpg" },
+    { alt: "Modernes Cockpit mit Touchdisplay", src: "/images/gallery/cockpit.jpg" },
+    { alt: "Küche mit Blick zum Alkoven-Bett", src: "/images/gallery/kueche-alkoven.jpg" },
+    { alt: "Gemütlicher Schlafbereich mit Dachfenster", src: "/images/gallery/schlafbereich.jpg" },
+    { alt: "TV-Ecke mit Leselampe", src: "/images/gallery/tv-ecke.jpg" },
     { alt: "LAIKA ECOVIP 309s — Frontansicht", src: "/images/gallery/exterior-front.jpg" },
     { alt: "Seitenansicht mit offener Tür", src: "/images/gallery/exterior-side.jpg" },
     { alt: "Heckgarage geöffnet", src: "/images/gallery/exterior-garage.jpg" },
