@@ -314,35 +314,37 @@ export function PriceCalculator() {
                 {/* Book now button */}
                 <a
                   href={(() => {
-                    const br = "%0D%0A";
-                    const seasonLines = calculation.seasonEntries.map(([name, s]) =>
-                      `  ${s.nights} ${s.nights === 1 ? "Nacht" : "Nächte"} ${name} x ${s.price} EUR = ${(s.nights * s.price).toLocaleString("de-DE")} EUR`
-                    ).join(br);
-                    const extrasLines = calculation.extrasBreakdown.length > 0
-                      ? br + br + "Gewaehltes Zubehoer:" + br + calculation.extrasBreakdown.map(e => `  - ${e.name}: ${e.cost} EUR`).join(br)
-                      : "";
-                    const subject = encodeURIComponent(`Buchungsanfrage ${new Date(startDate).toLocaleDateString("de-DE")} - ${new Date(endDate).toLocaleDateString("de-DE")}`);
-                    const body = [
+                    const lines: string[] = [
                       "Hallo,",
                       "",
-                      "ich moechte gerne das Wohnmobil LAIKA ECOVIP 309s buchen:",
+                      "ich möchte gerne das Wohnmobil LAIKA ECOVIP 309s buchen:",
                       "",
                       `Anreise:  ${new Date(startDate).toLocaleDateString("de-DE")}`,
                       `Abreise:  ${new Date(endDate).toLocaleDateString("de-DE")}`,
-                      `Naechte:  ${calculation.totalNights}`,
+                      `Nächte:   ${calculation.totalNights}`,
                       "",
                       "Kostenaufstellung:",
-                    ].join(br)
-                    + br + seasonLines
-                    + br + `  Servicepauschale: ${calculation.serviceFee} EUR`
-                    + extrasLines
-                    + br + br
-                    + `Gesamtpreis: ${calculation.total.toLocaleString("de-DE")} EUR`
-                    + br + `(zzgl. ${calculation.deposit} EUR Kaution, wird erstattet)`
-                    + br + br
-                    + "Bitte um Bestaetigung der Verfuegbarkeit."
-                    + br + br
-                    + "Mit freundlichen Gruessen";
+                    ];
+                    calculation.seasonEntries.forEach(([name, s]) => {
+                      lines.push(`  ${s.nights} ${s.nights === 1 ? "Nacht" : "Nächte"} ${name} × €${s.price} = €${(s.nights * s.price).toLocaleString("de-DE")}`);
+                    });
+                    lines.push(`  Servicepauschale: €${calculation.serviceFee}`);
+                    if (calculation.extrasBreakdown.length > 0) {
+                      lines.push("");
+                      lines.push("Gewähltes Zubehör:");
+                      calculation.extrasBreakdown.forEach(e => {
+                        lines.push(`  • ${e.name}: €${e.cost}`);
+                      });
+                    }
+                    lines.push("");
+                    lines.push(`Gesamtpreis: €${calculation.total.toLocaleString("de-DE")}`);
+                    lines.push(`(zzgl. €${calculation.deposit} Kaution, wird erstattet)`);
+                    lines.push("");
+                    lines.push("Bitte um Bestätigung der Verfügbarkeit.");
+                    lines.push("");
+                    lines.push("Mit freundlichen Grüßen");
+                    const subject = encodeURIComponent(`Buchungsanfrage ${new Date(startDate).toLocaleDateString("de-DE")} – ${new Date(endDate).toLocaleDateString("de-DE")}`);
+                    const body = encodeURIComponent(lines.join("\r\n"));
                     return `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
                   })()}
                   className="mt-6 block w-full text-center bg-copper hover:bg-copper-light text-[var(--background)] font-semibold rounded-full py-4 text-lg transition-colors"
