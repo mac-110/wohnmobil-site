@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { FloatingWhatsApp } from "@/components/WhatsAppButton";
 import { HeroSection } from "@/components/sections/Hero";
 import { VehicleSection } from "@/components/sections/Vehicle";
 import { FeaturesSection } from "@/components/sections/Features";
@@ -24,6 +25,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site";
 import { Calculator, CalendarDays, Check, ShieldCheck } from "lucide-react";
+import { WhatsAppBookingButton } from "@/components/WhatsAppButton";
 
 // Season date ranges for 2025/2026 (month is 0-indexed)
 const SEASON_RANGES = [
@@ -311,46 +312,54 @@ export function PriceCalculator() {
                   <span className="text-warm-white font-semibold">€{calculation.deposit}</span>
                 </div>
 
-                {/* Book now button */}
-                <a
-                  href={(() => {
-                    const lines: string[] = [
-                      "Hallo,",
-                      "",
-                      "ich möchte gerne das Wohnmobil LAIKA ECOVIP 309s buchen:",
-                      "",
-                      `Anreise:  ${new Date(startDate).toLocaleDateString("de-DE")}`,
-                      `Abreise:  ${new Date(endDate).toLocaleDateString("de-DE")}`,
-                      `Nächte:   ${calculation.totalNights}`,
-                      "",
-                      "Kostenaufstellung:",
-                    ];
-                    calculation.seasonEntries.forEach(([name, s]) => {
-                      lines.push(`  ${s.nights} ${s.nights === 1 ? "Nacht" : "Nächte"} ${name} × €${s.price} = €${(s.nights * s.price).toLocaleString("de-DE")}`);
+                {/* Book now buttons */}
+                {(() => {
+                  const lines: string[] = [
+                    "Hallo,",
+                    "",
+                    "ich möchte gerne das Wohnmobil LAIKA ECOVIP 309s buchen:",
+                    "",
+                    `Anreise:  ${new Date(startDate).toLocaleDateString("de-DE")}`,
+                    `Abreise:  ${new Date(endDate).toLocaleDateString("de-DE")}`,
+                    `Nächte:   ${calculation.totalNights}`,
+                    "",
+                    "Kostenaufstellung:",
+                  ];
+                  calculation.seasonEntries.forEach(([name, s]) => {
+                    lines.push(`  ${s.nights} ${s.nights === 1 ? "Nacht" : "Nächte"} ${name} × €${s.price} = €${(s.nights * s.price).toLocaleString("de-DE")}`);
+                  });
+                  lines.push(`  Servicepauschale: €${calculation.serviceFee}`);
+                  if (calculation.extrasBreakdown.length > 0) {
+                    lines.push("");
+                    lines.push("Gewähltes Zubehör:");
+                    calculation.extrasBreakdown.forEach(e => {
+                      lines.push(`  • ${e.name}: €${e.cost}`);
                     });
-                    lines.push(`  Servicepauschale: €${calculation.serviceFee}`);
-                    if (calculation.extrasBreakdown.length > 0) {
-                      lines.push("");
-                      lines.push("Gewähltes Zubehör:");
-                      calculation.extrasBreakdown.forEach(e => {
-                        lines.push(`  • ${e.name}: €${e.cost}`);
-                      });
-                    }
-                    lines.push("");
-                    lines.push(`Gesamtpreis: €${calculation.total.toLocaleString("de-DE")}`);
-                    lines.push(`(zzgl. €${calculation.deposit} Kaution, wird erstattet)`);
-                    lines.push("");
-                    lines.push("Bitte um Bestätigung der Verfügbarkeit.");
-                    lines.push("");
-                    lines.push("Mit freundlichen Grüßen");
-                    const subject = encodeURIComponent(`Buchungsanfrage ${new Date(startDate).toLocaleDateString("de-DE")} – ${new Date(endDate).toLocaleDateString("de-DE")}`);
-                    const body = encodeURIComponent(lines.join("\r\n"));
-                    return `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
-                  })()}
-                  className="mt-6 block w-full text-center bg-copper hover:bg-copper-light text-[var(--background)] font-semibold rounded-full py-4 text-lg transition-colors"
-                >
-                  Jetzt Buchen
-                </a>
+                  }
+                  lines.push("");
+                  lines.push(`Gesamtpreis: €${calculation.total.toLocaleString("de-DE")}`);
+                  lines.push(`(zzgl. €${calculation.deposit} Kaution, wird erstattet)`);
+                  lines.push("");
+                  lines.push("Bitte um Bestätigung der Verfügbarkeit.");
+                  lines.push("");
+                  lines.push("Mit freundlichen Grüßen");
+                  const messageText = lines.join("\n");
+                  const subject = encodeURIComponent(`Buchungsanfrage ${new Date(startDate).toLocaleDateString("de-DE")} – ${new Date(endDate).toLocaleDateString("de-DE")}`);
+                  const body = encodeURIComponent(lines.join("\r\n"));
+                  const mailtoUrl = `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
+
+                  return (
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <a
+                        href={mailtoUrl}
+                        className="block w-full text-center bg-copper hover:bg-copper-light text-[var(--background)] font-semibold rounded-full py-4 text-lg transition-colors"
+                      >
+                        ✉ E-Mail Anfrage
+                      </a>
+                      <WhatsAppBookingButton message={messageText} />
+                    </div>
+                  );
+                })()}
               </div>
             )}
 
